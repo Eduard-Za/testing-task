@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -25,9 +26,8 @@ public class Header extends BasePage {
     }
 
     public static BasketPage openShoppingCart() {
-        if ($(additionalGarnitureWindow).is(visible)) {
-            LOG.info(openShoppingCart() + " Close additional section");
-            $(additionalGarnitureWindow).waitUntil(and("Waits", visible, enabled), 5000)
+        if (!Selenide.title().contains("Basket")) {
+            $(additionalGarnitureWindow).waitUntil(and("Waits", visible, enabled), 10000)
                     .$(additionalBascet)
                     .waitUntil(enabled, 5000)
                     .click();
