@@ -23,7 +23,7 @@
 <h3>Описание проекта</h3>
 
 Тест <b>(src\test\java\MainTest.java)</b> был написан с использованием Selenide и Page Object pattern <b>(src\main\java\pages)</b>.
-Пакет <b>(src\main\java\drivers)</b> содержит <b>ChromeWebDriverInstance.class</b> который содержит статический <b>getLocalDriver()</b> метод и обеспечивает возможностью запуска тестов.
+Пакет <b>(src\main\java\drivers)</b> содержит <b>ChromeWebDriverInstance.class</b> который содержит статический <b>getLocalDriver()</b> метод и обеспечивает возможностью запуска тестов.</br>
 <b>Важная информация</b> - тестирование проводилось на Windows в Chrome. (Хотя в <b>getLocalDriver()</b> реализована возможность запуска тестов под Mac OS, однако, она не проверена).</br>
 
 Драйвера находятсся в <b>(src\main\resources\drivers)</b>.
