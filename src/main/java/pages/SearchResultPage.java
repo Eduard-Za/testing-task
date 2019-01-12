@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class SearchResultPage extends BasePage {
 
     private String selectLocator = "#sort";
-    private String allProducts = "div[class='a-row a-spacing-small'] a";
+    private String allProducts = "div[class='a-row a-spacing-none'] h2";
 
 
     public SearchResultPage(WebDriver driver) {
