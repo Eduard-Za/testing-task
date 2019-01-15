@@ -1,22 +1,24 @@
 import com.codeborne.selenide.WebDriverRunner;
 import drivers.ChromeWebDriverInstance;
+import listeners.ListenerFailed;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import static com.codeborne.selenide.Selenide.open;
 import static utils.PropertiesLoader.loadProperty;
 
+@Listeners({ListenerFailed.class})
 public class BaseTest {
 
     protected static WebDriver driver;
     private Log log = LogFactory.getLog(BaseTest.class);
 
 
-    @Before
+    @BeforeTest(alwaysRun=true)
     public void createDriver() {
         log.info("Test started");
         driver = ChromeWebDriverInstance.getWebDriverInstance();
@@ -26,8 +28,7 @@ public class BaseTest {
         open(url);
     }
 
-
-    @After
+    @AfterTest(alwaysRun=true)
     public void tearDown() {
         if (driver != null) {
             driver.close();

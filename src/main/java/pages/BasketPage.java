@@ -41,4 +41,8 @@ public class BasketPage extends BasePage {
     public String getMessageAboutEmptyBasket() {
         return $(message).waitUntil(visible, 5000).getText();
     }
+
+    public boolean checkThatOnlyOneProductInBasket() {
+        return $$(delete).size() == 1;
+    }
 }

@@ -11,6 +11,7 @@ public class ProductPage extends BasePage {
 
     private String addToCart = "#add-to-cart-button";
     private String currentProductName = "#productTitle";
+    private String listWithPrices = ".olp-padding-right a";
 
     private Log log = LogFactory.getLog(LoginPage.class);
 
@@ -27,5 +28,14 @@ public class ProductPage extends BasePage {
         String productName = $(currentProductName).getText();
         log.info("Result of searching was added " + productName);
         return productName;
+    }
+
+    public boolean checkPricesQuantity() {
+        return $(listWithPrices).isDisplayed();
+    }
+
+    public PriceListPage moveToPageWithPrices() {
+        $(listWithPrices).click();
+        return new PriceListPage(driver);
     }
 }

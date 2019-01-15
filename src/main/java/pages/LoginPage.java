@@ -22,6 +22,7 @@ public class LoginPage extends BasePage {
 
     public HomePage login() {
 
+
         String userName = loadProperty("user.username");
         String password = loadProperty("user.password");
 
@@ -30,6 +31,7 @@ public class LoginPage extends BasePage {
         $(emailField).setValue(userName);
         $(passwordField).setValue(password);
         $(signInButton).click();
+
         return new HomePage(driver);
     }
 

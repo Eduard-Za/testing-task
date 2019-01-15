@@ -1,20 +1,19 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Condition;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.enabled;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
 public class Header extends BasePage {
 
     private static String signIn = "#nav-flyout-ya-signin>a";
     private static String innerMenu = "#nav-link-yourAccount";
-    private static String additionalGarnitureWindow = "#attach-accessory-pane";
-    private static String additionalBascet = "#attach-sidesheet-view-cart-button";
     private static String openBascetElement = "#nav-cart-count";
 
     private static By logOutLocator = By.xpath("//span[contains(text(), 'Sign Out')]");
@@ -25,14 +24,13 @@ public class Header extends BasePage {
         super(driver);
     }
 
-    public static BasketPage openShoppingCart() {
-        if (!Selenide.title().contains("Basket")) {
-            $(additionalGarnitureWindow).waitUntil(and("Waits", visible, enabled), 10000)
-                    .$(additionalBascet)
-                    .waitUntil(enabled, 5000)
-                    .click();
+    public static BasketPage openShoppingCart() throws InterruptedException {
+        Thread.sleep(500);
+        if (Scroller.getBodyScroller().isDisplayed()) {
+            Scroller.getAdditionalBascet().waitUntil(Condition.enabled, 5000);
+            Scroller.getAdditionalBascet().click();
         } else {
-            $(openBascetElement).waitUntil(visible, 5000).click();
+            $(openBascetElement).waitUntil(enabled, 5000).click();
         }
         return new BasketPage(driver);
     }
@@ -52,5 +50,10 @@ public class Header extends BasePage {
         $(logOutLocator).waitUntil(exist, 5000)
                 .click();
         return new HomePage(driver);
+    }
+
+    public static void deleteProductsIfPresentIfTestFailed() throws InterruptedException {
+        LOG.info("Delete data in listener after test");
+        openShoppingCart().deleteProducts();
     }
 }
