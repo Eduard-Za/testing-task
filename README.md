@@ -67,7 +67,7 @@
 <p>Была добавлена проверка правилбности сортировки на странице. Для этого используется метод <b>checkSorting().</b></br>
 <p>Он возвращает булевое true, если сортировка верна.</p></br>
 <i>Примечание:</i> в качестве assert для этой проверки использовался org.testng.asserts.SoftAssert, для продолжения хода теста,</br>
-так как сортировка некорректна на странице(см. screenshot).</li></br>
+так как сортировка некорректна на странице(см. screenshot-ы ниже).</li></br>
 
 
 
@@ -80,3 +80,8 @@
 <p>Также был добавлен <b>ListenerFailed()</b> - это TestNG listener, который запускает метод 
 <b>deleteProductsIfPresentIfTestFailed(),</b> который удаляет продукты в случае неудачного теста. Благодаря всем этим мерам, больше одного продукта в корзине не наблюдается.</p></li>
 </ul>
+
+<h3>Screenshots - сортировка</h3>
+
+![alt](https://github.com/Eduard-Za/testing-task/blob/master/src/main/resources/images/Untitled1.png)
+![alt](https://github.com/Eduard-Za/testing-task/blob/master/src/main/resources/images/Untitled2.png)
